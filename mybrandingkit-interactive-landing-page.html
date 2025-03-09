@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyBrandingKit - Create Professional Media Kits</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            background-color: #f7f7f7;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 10%;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 18px;
+            color: #333;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #2d2d5f;
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #2d2d5f;
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .auth-buttons {
+            display: flex;
+            align-items: center;
+        }
+        
+        .sign-up-btn {
+            background-color: #2d2d5f;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-right: 15px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(45, 45, 95, 0.1);
+        }
+        
+        .sign-up-btn:hover {
+            background-color: #22224b;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(45, 45, 95, 0.2);
+        }
+        
+        .log-in-btn {
+            color: #666;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .log-in-btn:hover {
+            color: #2d2d5f;
+            transform: translateY(-1px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 20px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(45, 45, 95, 0.05);
+            top: -100px;
+            left: -100px;
+            z-index: -1;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(45, 45, 95, 0.05);
+            bottom: 50px;
+            right: -50px;
+            z-index: -1;
+        }
+        
+        .hero h1 {
+            font-size: 38px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .hero p {
+            font-size: 16px;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+        
+        .primary-btn {
+            background-color: #2d2d5f;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(45, 45, 95, 0.1);
+            display: inline-block;
+        }
+        
+        .primary-btn:hover {
+            background-color: #22224b;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(45, 45, 95, 0.2);
+        }
+        
+        .primary-btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .secondary-btn {
+            border: 1px solid #2d2d5f;
+            color: #2d2d5f;
+            padding: 12px 28px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .secondary-btn:hover {
+            background-color: rgba(45, 45, 95, 0.05);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(45, 45, 95, 0.1);
+        }
+        
+        .secondary-btn:active {
+            transform: translateY(-1px);
+        }
+        
+        /* Profile Card */
+        .profile-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            max-width: 750px;
+            margin: 0 auto 80px;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            transform: translateY(0);
+            transition: all 0.5s;
+            animation: floatIn 1s ease-out 0.6s both;
+        }
+        
+        @keyframes floatIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .profile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .profile-info {
+            flex: 1;
+            padding-right: 30px;
+        }
+        
+        .profile-name {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .social-links a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s;
+            background-color: #f5f5f5;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        .social-links a:hover {
+            background-color: #e0e0e0;
+            color: #2d2d5f;
+            transform: translateY(-2px);
+        }
+        
+        .website-link {
+            color: #2d2d5f;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .website-link:hover {
+            color: #22224b;
+            text-decoration: underline;
+        }
+        
+        .profile-description {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
+        .contact-button {
+            background-color: #2d2d5f;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-block;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(45, 45, 95, 0.1);
+        }
+        
+        .contact-button:hover {
+            background-color: #22224b;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(45, 45, 95, 0.2);
+        }
+        
+        .profile-image {
+            width: 250px;
+            height: 250px;
+            border-radius: 4px;
+            object-fit: cover;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .profile-image:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            padding: 0 10% 80px;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+            transform: translateY(0);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            background-color: #f3f3f3;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 24px;
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+            background-color: rgba(45, 45, 95, 0.1);
+        }
+        
+        .feature-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .feature-description {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        /* Steps Section */
+        .steps-section {
+            text-align: center;
+            padding: 80px 10%;
+            background-color: #fbfbfb;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .steps-section::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(45, 45, 95, 0.03);
+            top: 50px;
+            right: -100px;
+            z-index: 0;
+        }
+        
+        .steps-section h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .steps-section p {
+            color: #666;
+            margin-bottom: 50px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            position: relative;
+        }
+        
+        .steps::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 22%;
+            width: 56%;
+            height: 2px;
+            background-color: #e0e0e0;
+            z-index: 0;
+        }
+        
+        .step-card {
+            text-align: center;
+            background-color: white;
+            border-radius: 8px;
+            padding: 40px 20px 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s;
+        }
+        
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .step-number {
+            background-color: #2d2d5f;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .step-card:hover .step-number {
+            transform: scale(1.1);
+        }
+        
+        .step-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .step-description {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        /* Features For Personalities Section */
+        .personalities-section {
+            padding: 80px 10%;
+        }
+        
+        .personalities-section h2 {
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .personalities-section .subtitle {
+            color: #666;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .showcase-feature {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 80px;
+            align-items: center;
+        }
+        
+        .showcase-content {
+            padding: 20px 0;
+        }
+        
+        .showcase-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .showcase-description {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .feature-list {
+            list-style: none;
+        }
+        
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+        }
+        
+        .feature-list li:hover {
+            transform: translateX(5px);
+        }
+        
+        .feature-list li::before {
+            content: "✓";
+            color: #2d2d5f;
+            margin-right: 10px;
+            background-color: rgba(45, 45, 95, 0.1);
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+        
+        .showcase-image {
+            border-radius: 8px;
+            min-height: 300px;
+            background-color: #f3f3f3;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .showcase-image:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .showcase-image::before {
+            content: 'Click to upload image';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #666;
+            font-size: 14px;
+            font-weight: 500;
+            opacity: 0.7;
+        }
+        
+        .showcase-image::after {
+            content: '📁';
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+        }
+        
+        /* Use Cases Section */
+        .use-cases-section {
+            padding: 80px 10%;
+            text-align: center;
+            background-color: #fbfbfb;
+        }
+        
+        .use-cases-section h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .use-cases-section p {
+            color: #666;
+            margin-bottom: 50px;
+        }
+        
+        .use-cases {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .use-case-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+        
+        .use-case-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .use-case-image {
+            height: 200px;
+            background-color: #e5e5e5;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        
+        .use-case-image::before {
+            content: 'Click to upload image';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #666;
+            font-size: 14px;
+            font-weight: 500;
+            opacity: 0.7;
+            z-index: 1;
+        }
+        
+        .use-case-image::after {
+            content: '📁';
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            z-index: 1;
+        }
+        
+        .use-case-content {
+            padding: 25px;
+            text-align: left;
+            transition: all 0.3s;
+        }
+        
+        .use-case-card:hover .use-case-content {
+            background-color: #f8f8ff;
+        }
+        
+        .use-case-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #2d2d5f;
+        }
+        
+        .use-case-description {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        /* Floating button */
+        .float-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #2d2d5f;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(45, 45, 95, 0.3);
+            z-index: 100;
+            font-size: 24px;
+            transition: all 0.3s;
+        }
+        
+        .float-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(45, 45, 95, 0.4);
+        }
+        
+        /* Image upload overlay */
+        .upload-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .upload-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .upload-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            position: relative;
+            transform: translateY(20px);
+            transition: all 0.3s;
+        }
+        
+        .upload-overlay.show .upload-container {
+            transform: translateY(0);
+        }
+        
+        .close-upload {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .upload-zone {
+            border: 2px dashed #ccc;
+            padding: 40px 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .upload-zone:hover {
+            border-color: #2d2d5f;
+            background-color: rgba(45, 45, 95, 0.03);
+        }
+        
+        .upload-btn {
+            background-color: #2d2d5f;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .upload-btn:hover {
+            background-color: #22224b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(45, 45, 95, 0.2);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .features, 
+            .steps,
+            .use-cases {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .steps::after {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 15px 5%;
+            }
+            
+            .nav-links {
+                margin: 15px 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links li {
+                margin: 5px 10px;
+            }
+            
+            .profile-card {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            
+            .profile-info {
+                padding-right: 0;
+                padding-top: 20px;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+            
+            .website-link {
+                justify-content: center;
+            }
+            
+            .showcase-feature {
+                grid-template-columns: 1fr;
+            }
+            
+            .features, 
+            .steps,
+            .use-cases {
+                grid-template-columns: 1fr;
+            }
+            
+            .float-btn {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="#" class="logo">MyBrandingKit</a>
+        <ul class="nav-links">
+            <li><a href="#">Features</a></li>
+            <li><a href="#">How it works</a></li>
+            <li><a href="#">Resources</a></li>
+            <li><a href="#">Pricing</a></li>
+        </ul>
+        <div class="auth-buttons">
+            <a href="#" class="sign-up-btn">Sign up now</a>
+            <a href="#" class="log-in-btn">Log in</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Create Professional Media Kits That<br>Win Brand Deals</h1>
+        <p>Your Personal Creative Credentials in a Professional Fashion for Businesses, Your Metrics, Demographics, Content Services, and More in One Simple Place</p>
+        <div class="hero-buttons">
+            <a href="#" class="primary-btn">Create Your Media Kit</a>
+            <a href="#" class="secondary-btn">See Examples</a>
+        </div>
+        
+        <!-- Profile Card -->
+        <div class="profile-card">
+            <div class="profile-info">
+                <h2 class="profile-name">Olivia Rodrigo</h2>
+                <div class="social-links">
+                    <a href="#">Instagram</a>
+                    <a href="#">YouTube</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">TikTok</a>
+                    <a href="#">Snapchat</a>
+                    <a href="#">Twitter</a>
+                </div>
+                <a href="#" class="website-link">www.oliviarodrigo.com</a>
+                <p class="profile-description">I'm a content creator specializing in lifestyle and fashion. Follow me for daily content, tips and tricks. Our latest fashion collab went viral with over 2M views - brands tell me they love the clean yet creative aesthetic.</p>
+                <a href="#" class="contact-button">CONTACT ME</a>
+            </div>
+            <img src="/api/placeholder/250/250" alt="Olivia Rodrigo" class="profile-image" onclick="showUploadOverlay('profile-image')">
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="feature-card">
+            <div class="feature-icon">📋</div>
+            <h3 class="feature-title">Professional Templates</h3>
+            <p class="feature-description">Beautifully designed templates to convey your brand in a professional audience</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3 class="feature-title">Real-Time Analytics</h3>
+            <p class="feature-description">Automatically update your stats so you always have current metrics</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">✏️</div>
+            <h3 class="feature-title">Easy Customization</h3>
+            <p class="feature-description">Personalize every aspect of your media kit to match your brand exactly as needed</p>
+        </div>
+    </section>
+
+    <!-- Steps Section -->
+    <section class="steps-section">
+        <h2>Create Your Media Kit In Minutes</h2>
+        <p>Our simple Process takes you from Professional Media Kit to Brand Deals within days.</p>
+        
+        <div class="steps">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3 class="step-title">Sign Up</h3>
+                <p class="step-description">Create your account and choose from our professional template designs</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3 class="step-title">Customize</h3>
+                <p class="step-description">Add your information, content and social media to customize your design</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3 class="step-title">Share</h3>
+                <p class="step-description">Get a unique link to share with brands or download your media kit for printing</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features For Personalities Section -->
+    <section class="personalities-section">
+        <h2>Powerful Features For Personalities</h2>
+        <p class="subtitle">Everything You Need To Create Professional Media Kits That Impress Brands</p>
+        
+        <div class="showcase-feature">
+            <div class="showcase-content">
+                <h3 class="showcase-title">Showcase Your Audience</h3>
+                <p class="showcase-description">Help brands understand how your audience aligns with detailed demographics.</p>
+                <ul class="feature-list">
+                    <li>Automatically pull audience data from connected platforms</li>
+                    <li>Visualize demographics with beautiful charts</li>
+                    <li>Highlight key statistics that make your audience valuable</li>
+                    <li>Update in real-time as your followers grow</li>
+                </ul>
+            </div>
